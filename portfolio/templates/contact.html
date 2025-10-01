@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="contact-section py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+
+        <!-- Frosted Glass Card -->
+        <div class="frosted p-5 shadow-lg rounded-4">
+          <h2 class="mb-4 text-center">Contact Me</h2>
+          <p class="text-center text-muted mb-4">
+            Have a question or want to work together? Fill out the form below.
+          </p>
+
+          <form method="POST" action="{{ url_for('contact') }}">
+            {{ form.hidden_tag() }}
+
+            <!-- Name Field -->
+            <div class="mb-3">
+              {{ form.name.label(class="form-label") }}
+              {{ form.name(class="form-control frosted-input") }}
+            </div>
+
+            <!-- Email Field -->
+            <div class="mb-3">
+              {{ form.email.label(class="form-label") }}
+              {{ form.email(class="form-control frosted-input") }}
+            </div>
+
+            <!-- Message Field -->
+            <div class="mb-3">
+              {{ form.message.label(class="form-label") }}
+              {{ form.message(class="form-control frosted-input", rows="5") }}
+            </div>
+
+            <!-- Submit Button -->
+            <div class="text-center">
+              {{ form.submit(class="btn btn-primary btn-lg px-5 py-2") }}
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GSAP Animations -->
+<script>
+  gsap.from(".frosted", {opacity: 0, y: 50, duration: 1, stagger: 0.2});
+  gsap.from(".form-label", {opacity: 0, x: -30, duration: 0.8, stagger: 0.2});
+  gsap.from(".btn", {opacity: 0, scale: 0.8, duration: 0.8, delay: 1});
+</script>
+{% endblock %}

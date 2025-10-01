@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="profile-section py-5">
+  <div class="container">
+
+    <!-- Profile Row -->
+    <div class="row align-items-center mb-5">
+      
+      <!-- Profile Photo Circle -->
+      <div class="col-md-4 text-center animate-fade">
+        <div class="profile-photo frosted">
+          <img src="{{ url_for('static', filename='images/profile.jpg') }}" alt="Profile Photo">
+        </div>
+      </div>
+
+      <!-- Profile Info -->
+      <div class="col-md-8 animate-fade">
+        <h1 class="text-white">{{ profile.name }}</h1>
+        <h4 class="text-muted">{{ profile.title }}</h4>
+        <p class="text-light">{{ profile.bio }}</p>
+      </div>
+
+    </div>
+
+    <!-- Skills Section -->
+    <h2 class="mb-3 text-white animate-fade">Skills</h2>
+    <div class="skills mb-5 animate-fade">
+      {% for skill in profile.skills %}
+        <span class="badge rounded-pill frosted p-2 me-2 mb-2">{{ skill.strip() }}</span>
+      {% endfor %}
+    </div>
+
+    <!-- Internships Section -->
+    <h2 class="mb-3 text-white animate-fade">Internships</h2>
+    <div class="row g-4 mb-5">
+      {% for internship in profile.internships %}
+      <div class="col-md-6 col-lg-4 animate-fade">
+        <div class="frosted p-4 h-100">
+          <h5 class="text-white">{{ internship.company }}</h5>
+          <p class="text-muted">{{ internship.role }}</p>
+          <p class="text-light">{{ internship.description }}</p>
+          <p class="small text-muted">{{ internship.duration }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Projects Section -->
+    <h2 class="mb-3 text-white animate-fade">Projects</h2>
+    <div class="row g-4 mb-5">
+      {% for project in projects %}
+      <div class="col-md-6 col-lg-4 animate-fade">
+        <div class="frosted p-4 h-100">
+          <h5 class="text-white">{{ project.title }}</h5>
+          <p class="text-light">{{ project.desc }}</p>
+          <a href="{{ project.github }}" class="btn btn-outline-primary btn-sm me-2">Code</a>
+          <a href="{{ project.demo }}" class="btn btn-primary btn-sm">Demo</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Hobbies Section -->
+    <h2 class="mb-3 text-white animate-fade">Hobbies</h2>
+    <div class="hobbies mb-5 animate-fade">
+      {% for hobby in profile.hobbies %}
+        <span class="badge rounded-pill frosted p-2 me-2 mb-2">{{ hobby.strip() }}</span>
+      {% endfor %}
+    </div>
+
+    <!-- Languages Section -->
+    <h2 class="mb-3 text-white animate-fade">Languages</h2>
+    <div class="languages mb-5 animate-fade">
+      {% for lang in profile.languages %}
+        <span class="badge rounded-pill frosted p-2 me-2 mb-2">{{ lang.strip() }}</span>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+<!-- GSAP Animations -->
+<script>
+  gsap.from(".animate-fade", {
+    opacity: 0,
+    y: 30,
+    duration: 1,
+    stagger: 0.2,
+    ease: "power3.out"
+  });
+</script>
+{% endblock %}

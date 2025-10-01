@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="success-section py-5">
+  <div class="container text-center">
+    <div class="frosted p-5 mx-auto animate-fade" style="max-width: 500px; border-radius: 20px;">
+      <h2 class="mb-3">Message Sent!</h2>
+      <p class="mb-4">Thank you for reaching out. I will get back to you as soon as possible.</p>
+      <a href="{{ url_for('home') }}" class="btn btn-primary btn-lg">Back to Home</a>
+    </div>
+  </div>
+</section>
+
+<!-- GSAP Animation -->
+<script>
+  gsap.from(".animate-fade", {
+    opacity: 0,
+    scale: 0.8,
+    duration: 1,
+    ease: "power3.out"
+  });
+</script>
+{% endblock %}
